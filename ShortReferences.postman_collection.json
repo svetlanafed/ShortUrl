@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "87d26dda-d648-47e8-82ee-af51ea5d5748",
+		"name": "ShortReferences",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create short link",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"longUrl\": \"https://mail.ru\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/shorten",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"shorten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create short link with error (long link is null)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"longUrl\": null}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/shorten",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"shorten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redirect by hash with success returns html page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/THisK",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"THisK"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get long link by hash with success",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/decode/THisK",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"decode",
+						"THisK"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
