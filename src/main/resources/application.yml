@@ -1,0 +1,8 @@
+spring:
+  flyway:
+    enabled: true
+
+
+  profiles:
+    # PlaceHolder для имени активного профиля. Транслируется из POM. Позволяет выбрать активный application.yml
+    active: @spring.profiles.active@
