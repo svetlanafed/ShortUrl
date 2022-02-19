@@ -12,8 +12,4 @@ public interface LinkService {
     LongUrl getLongLink(String hash);
 
     HttpHeaders getHeaders(Shorter shorter) throws URISyntaxException;
-
-    boolean checkShortLinkValidity(Shorter shorter);
-
-    Shorter createNewHash(LongUrl longUrl);
 }

@@ -13,7 +13,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Instant;
 import java.time.ZonedDateTime;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -32,7 +31,6 @@ public class LinkServiceImpl implements LinkService {
     private final ShorterService service;
 
     @Override
-    @Transactional
     public Shorter getShortUrl(LongUrl longUrl) {
         Shorter savedShorter;
         if (longUrl.getLongUrl() != null) {
@@ -84,15 +82,13 @@ public class LinkServiceImpl implements LinkService {
         }
     }
 
-    @Override
-    public boolean checkShortLinkValidity(Shorter shorter) {
+    private boolean checkShortLinkValidity(Shorter shorter) {
         ZonedDateTime now = ZonedDateTime.now();
         ZonedDateTime expired = shorter.getCreatedAt().plusMinutes(VALIDITY);
         return now.isAfter(expired);
     }
 
-    @Override
-    public Shorter createNewHash(LongUrl longUrl) {
+    private Shorter createNewHash(LongUrl longUrl) {
         String hash = codeGenerator.generate(SHORT_URL_LENGTH);
         Shorter shorter = new Shorter(
                 null,
